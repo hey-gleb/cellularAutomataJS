@@ -1,8 +1,9 @@
 import { worldHeight, worldWidth, windowWidth, windowHeight, cellSize, deltaTime } from './const';
-import { Sand } from './elements/solid/movableSolid/sand';
-import { Water } from './elements/liquids/water';
-import { Stone } from './elements/solid/immovableSolid/stone';
+import { Sand } from './elements/sand';
+import { Water } from './elements/water';
+import { Stone } from './elements/stone';
 import { clearCanvas, renderCell } from './utils/render';
+import { drawGrid } from './utils/debug';
 
 let matrix = Array.from(Array(windowWidth), () => Array.from(Array(windowWidth)));
 const canvas = document.getElementById('myCanvas')!;
@@ -14,14 +15,13 @@ ctx.canvas.height = worldHeight;
 
 const step = () => {
   clearCanvas(ctx);
-  let newState = Array.from(Array(windowWidth), () => Array.from(Array(windowWidth)));
   for (let y = windowHeight - 1; y >= 0; y--) {
     for (let x = windowWidth - 1; x >= 0; x--) {
       let cell = matrix[y][x];
+      drawGrid(ctx);
       if (!cell) continue;
       renderCell(ctx, cell);
       let updated = false;
-      // TODO fix it
       if (y + 1 >= windowHeight || x - 1 < 0) updated = true;
       const topLeft = matrix[y - 1] ? matrix[y - 1][x - 1] : undefined;
       const top = matrix[y - 1] ? matrix[y - 1][x] : undefined;
@@ -34,19 +34,9 @@ const step = () => {
       const neighbors = {
         topLeft, top, topRight, left, right, bottomLeft, bottom, bottomRight,
       };
-      if (cell.movable) {
-        let shouldRemoveLastPosition = true;
-        shouldRemoveLastPosition = cell.process(cell, neighbors, newState, shouldRemoveLastPosition);
-        if (shouldRemoveLastPosition) {
-          newState[y][x] = undefined;
-        }
-        newState[cell.y][cell.x] = cell;
-        continue;
-      }
-      newState[y][x] = cell;
+      cell.process(neighbors, matrix);
     }
   }
-  matrix = newState;
 };
 
 const main = () => {

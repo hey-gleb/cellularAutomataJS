@@ -1,6 +1,6 @@
 import { cellSize, worldHeight, worldWidth } from '../const';
 
-const drawGrid = (ctx: any) => {
+export const drawGrid = (ctx: any) => {
   ctx.beginPath();
   for (let i = 0; i < worldWidth; i += cellSize) {
     ctx.moveTo(i, 0);

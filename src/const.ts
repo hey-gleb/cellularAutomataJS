@@ -5,7 +5,7 @@
 const cellSize = 40;
 const windowWidth = 10;
 const windowHeight = 10;
-const deltaTime = 100;
+const deltaTime = 1000;
 
 const worldWidth = cellSize * windowWidth;
 const worldHeight = cellSize * windowHeight;

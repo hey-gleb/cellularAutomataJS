@@ -1,17 +1,15 @@
-export class Vector3 {
-    private x: number;
-    private y: number;
-    private z: number;
+export class Vector2 {
+  public x: number;
+  public y: number;
 
-    constructor(x: number, y: number, z: number) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
+  constructor(x: number, y: number) {
+    this.x = x;
+    this.y = y;
+  }
 
-    add = (vector: Vector3) => {
-        this.x += vector.x;
-        this.y += vector.y;
-        this.z += vector.z;
-    }
+  add = (vector: Vector2) => {
+    this.x += vector.x;
+    this.y += vector.y;
+  };
 }
+
