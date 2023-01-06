@@ -12,6 +12,8 @@ export class Water extends Liquid {
   init = () => {
   };
 
+  getColor = () => this.color;
+
   process = (neighbors: Neighbors, matrix: Matrix) => {
     const interactNeighbors = () => {
       debugger;

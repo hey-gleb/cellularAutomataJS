@@ -2,10 +2,10 @@
 // const windowWidth = 96;
 // const windowHeight = 64;
 
-const cellSize = 40;
-const windowWidth = 10;
-const windowHeight = 10;
-const deltaTime = 1000;
+const cellSize = 10;
+const windowWidth = 60;
+const windowHeight = 60;
+const deltaTime = 75;
 
 const worldWidth = cellSize * windowWidth;
 const worldHeight = cellSize * windowHeight;

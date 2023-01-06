@@ -20,6 +20,10 @@ export class Sand extends MovableSolid {
   init = () => {
   };
 
+  getColor = () => {
+    return this.color;
+  };
+
   process = (neighbors: Neighbors, matrix: Matrix) => {
     const interactNeighbors = () => {
       if (!bottom && this.y * cellSize !== worldHeight - cellSize) {

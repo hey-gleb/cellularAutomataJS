@@ -4,25 +4,27 @@ import type { Matrix } from '../types/matrix';
 export abstract class Element {
   public x: number;
   public y: number;
+  public color: string;
 
-  protected constructor(x: number, y: number) {
+  protected constructor(x: number, y: number, color: string) {
     this.x = x;
     this.y = y;
+    this.color = color;
   }
 
   abstract init: () => void;
+
+  abstract getColor: () => string;
 
   // TODO remove neighbors because not all the elements need it
   abstract process: (neighbors: Neighbors, matrix: Matrix) => void;
 }
 
 export abstract class Solid extends Element {
-  private color: string;
   private movable: boolean;
 
   protected constructor(x: number, y: number, color: string, movable: boolean) {
-    super(x, y);
-    this.color = color;
+    super(x, y, color);
     this.movable = movable;
   }
 }
@@ -40,10 +42,7 @@ export abstract class MovableSolid extends Solid {
 }
 
 export abstract class Liquid extends Element {
-  private color: string;
-
   protected constructor(x: number, y: number, color: string) {
-    super(x, y);
-    this.color = color;
+    super(x, y, color);
   }
 }

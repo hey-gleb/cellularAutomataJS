@@ -10,6 +10,8 @@ export class Stone extends ImmovableSolid {
   init = () => {
   };
 
+  getColor = () => this.color;
+
   process = (neighbors: Neighbors, matrix: Matrix) => {
     matrix[this.y][this.x] = this;
   };
